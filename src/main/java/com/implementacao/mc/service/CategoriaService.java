@@ -1,9 +1,13 @@
 package com.implementacao.mc.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.implementacao.mc.domain.Categoria;
+import com.implementacao.mc.exceptions.DataIntegrityException;
 import com.implementacao.mc.exceptions.ObjectNotFoundException;
 import com.implementacao.mc.repositories.CategoriaRepository;
 
@@ -14,14 +18,40 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo;
 	
-	public Categoria buscar(Integer id ) {
-		Categoria obj = repo.findOne(id);
+	public Categoria find(Integer id ) {
+		Categoria obj = repo.findById(id).get();
            if(obj == null) {
 			
 			throw new ObjectNotFoundException("Objeto não encontrado " + id + ", tipo: " + Categoria.class.getName());
 		}
 		
 		return obj;
+	}
+	
+	public Categoria insert(Categoria obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
+	
+	public Categoria update(Categoria obj) {
+		find(obj.getId());
+		return repo.save(obj);
+	}
+	
+	public void delete(Integer id) {
+		
+		 find(id);
+		 try {
+		 repo.deleteById(id);
+		 }catch(DataIntegrityViolationException e){
+			 
+			 throw new DataIntegrityException("Não e possivel excluir categoria que possui produto");
+		 }
+	}
+	
+	public List<Categoria> findAll() {
+		
+		return repo.findAll();
 	}
 	
 	

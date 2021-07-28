@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.implementacao.mc.domain.enums.TipoCliente;
 @Entity
 public class Cliente implements Serializable {
@@ -35,6 +36,7 @@ public class Cliente implements Serializable {
 	@ElementCollection
 	@CollectionTable(name="TELEFONES")
 	private Set<String> telefones = new HashSet<>();
+	
 	
 	@OneToMany(mappedBy="cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
@@ -107,7 +109,7 @@ public class Cliente implements Serializable {
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
 	}
-	
+	@JsonIgnore
 	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
