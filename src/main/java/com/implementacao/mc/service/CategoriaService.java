@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.implementacao.mc.DTO.CategoriaDTO;
 import com.implementacao.mc.domain.Categoria;
+import com.implementacao.mc.domain.Cliente;
+import com.implementacao.mc.domain.Categoria;
 import com.implementacao.mc.exceptions.DataIntegrityException;
 import com.implementacao.mc.exceptions.ObjectNotFoundException;
 import com.implementacao.mc.repositories.CategoriaRepository;
@@ -38,8 +40,9 @@ public class CategoriaService {
 	}
 	
 	public Categoria update(Categoria obj) {
-		find(obj.getId());
-		return repo.save(obj);
+		Categoria newObj = find(obj.getId());
+		upDateData(newObj,obj);
+		return repo.save(newObj);
 	}
 	
 	public void delete(Integer id) {
@@ -67,6 +70,12 @@ public class CategoriaService {
 	
 	public Categoria fromDTO(CategoriaDTO objDTO) {
 		return new Categoria(objDTO.getId(),objDTO.getName());
+	}
+	
+	private void upDateData(Cliente newObj, Cliente obj) {
+		
+		newObj.setNome(obj.getNome());
+		
 	}
 	
 }
