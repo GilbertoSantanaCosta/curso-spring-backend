@@ -72,9 +72,9 @@ public class CategoriaService {
 		return new Categoria(objDTO.getId(),objDTO.getName());
 	}
 	
-	private void upDateData(Cliente newObj, Cliente obj) {
+	private void upDateData(Categoria newObj, Categoria obj) {
 		
-		newObj.setNome(obj.getNome());
+		newObj.setName(obj.getName());
 		
 	}
 	
