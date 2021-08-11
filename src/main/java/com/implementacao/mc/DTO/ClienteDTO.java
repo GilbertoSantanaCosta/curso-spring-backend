@@ -5,10 +5,14 @@ import java.io.Serializable;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
+
 import org.hibernate.validator.constraints.Length;
 
 import com.implementacao.mc.domain.Cliente;
+import com.implementacao.mc.service.validation.ClienteUpdate;
 
+
+@ClienteUpdate
 public class ClienteDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -16,7 +20,7 @@ public class ClienteDTO implements Serializable {
 	
 	@NotEmpty(message="Preenchimento obrigatorio")
 	@Length(min=5,max=120,message="O tamanho deve ser entre 5 e 120 caracteres")
-	String name;
+	String nome;
 	@NotEmpty(message="Preenchimento obrigatorio")
 	@Email(message="Email inválido")
 	String email;
@@ -28,7 +32,7 @@ public class ClienteDTO implements Serializable {
     public ClienteDTO(Cliente obj) {
 		
     	id = obj.getId();
-    	name = obj.getNome();
+    	nome = obj.getNome();
     	email = obj.getEmail();
     			
 	}
@@ -38,11 +42,11 @@ public class ClienteDTO implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String name) {
+		this.nome = name;
 	}
 	public String getEmail() {
 		return email;

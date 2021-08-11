@@ -51,11 +51,11 @@ public class Estado implements Serializable {
 		this.nome = nome;
 	}
 	@JsonIgnore
-	public List<Cidade> getCidade() {
+	public List<Cidade> getCidades() {
 		return cidade;
 	}
 
-	public void setCidade(List<Cidade> cidade) {
+	public void setCidades(List<Cidade> cidade) {
 		this.cidade = cidade;
 	}
 

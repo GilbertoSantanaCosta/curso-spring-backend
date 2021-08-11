@@ -94,11 +94,11 @@ public class Produto implements Serializable {
 	
 	
 	@JsonIgnore
-	public List<Categoria> getCetegoria() {
+	public List<Categoria> getCategorias() {
 		return categorias;
 	}
 
-	public void setCetegoria(List<Categoria> categorias) {
+	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
 	}
 	

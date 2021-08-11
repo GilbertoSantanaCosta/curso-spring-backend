@@ -2,6 +2,8 @@ package com.implementacao.mc.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -11,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.implementacao.mc.DTO.ClienteDTO;
 import com.implementacao.mc.DTO.ClienteNewDTO;
-import com.implementacao.mc.domain.Categoria;
+
 import com.implementacao.mc.domain.Cidade;
 import com.implementacao.mc.domain.Cliente;
 import com.implementacao.mc.domain.Endereco;
@@ -45,6 +47,7 @@ public class ClienteService {
 		return obj;
 	}
 	
+	@Transactional
 	public Cliente insert(Cliente obj) {
 		obj.setId(null);
 		obj = repo.save(obj);
@@ -79,6 +82,10 @@ public class ClienteService {
 		PageRequest pageRequest =  PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 		
+	}
+	
+	public Cliente fromDTO(ClienteDTO objDto) {
+		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), null, null);
 	}
 	
 	public Cliente fromDTO(ClienteNewDTO objDTO) {

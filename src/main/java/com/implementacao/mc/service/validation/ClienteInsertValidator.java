@@ -4,14 +4,22 @@ import java.util.List;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.implementacao.mc.DTO.ClienteNewDTO;
+import com.implementacao.mc.domain.Cliente;
 import com.implementacao.mc.domain.enums.TipoCliente;
 import com.implementacao.mc.exceptions.FieldMessage;
-import com.implementacao.mc.service.validation.utils.CpfCnpjValidator;
+import com.implementacao.mc.repositories.ClienteRepository;
+import com.implementacao.mc.service.validation.utils.BR;
+
 
 public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert, ClienteNewDTO> {
 	
-	CpfCnpjValidator documento = new CpfCnpjValidator();;
+	
+	
+	@Autowired
+	private ClienteRepository repo;
 	
 	@Override
 	 public void initialize(ClienteInsert ann) {
@@ -20,14 +28,19 @@ public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert
 	 public boolean isValid(ClienteNewDTO objDto, ConstraintValidatorContext context) {
 	 List<FieldMessage> list = new ArrayList<>();
 	System.out.println(objDto.getCnpjOuCpf()); 
-	 
-	 if(  documento.isCPF(objDto.getCnpjOuCpf()) == false && objDto.getTipo().equals(TipoCliente.PESSOAFISICA.getCod()  )) {
-		 list.add(new FieldMessage("cnpjOuCpf", "CPF invalido"));
-	 }
-	 
-	if(  documento.isCNPJ(objDto.getCnpjOuCpf()) == false && objDto.getTipo().equals(TipoCliente.PESSOAJURIDICA.getCod() )) {
-		 list.add(new FieldMessage("cnpjOuCpf", "CNPJ invalido"));
-	 }
+	if (objDto.getTipo().equals(TipoCliente.PESSOAFISICA.getCod()) && !BR.isValidCPF(objDto.getCnpjOuCpf())) {
+		list.add(new FieldMessage("cpfOuCnpj", "CPF inválido"));
+	}
+
+	if (objDto.getTipo().equals(TipoCliente.PESSOAJURIDICA.getCod()) && !BR.isValidCNPJ(objDto.getCnpjOuCpf())) {
+		list.add(new FieldMessage("cpfOuCnpj", "CNPJ inválido"));
+	}
+
+	Cliente aux = repo.findByEmail(objDto.getEmail());
+	if (aux != null) {
+		list.add(new FieldMessage("email", "Email já existente"));
+	}
+	
 	 
 	 for (FieldMessage e : list) {
 	 context.disableDefaultConstraintViolation();
