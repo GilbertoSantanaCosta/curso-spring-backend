@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.implementacao.mc.domain.Categoria;
@@ -33,6 +34,10 @@ import com.implementacao.mc.repositories.ProdutoRepository;
 @Service
 public class DBservice {
 
+	
+	@Autowired
+	private BCryptPasswordEncoder pe;
+	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	
@@ -123,7 +128,7 @@ public class DBservice {
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 		
-		Cliente cli1 = new Cliente(null, "Maria Silva", "flamacar@hotmail.com", "36378912377", TipoCliente.PESSOAFISICA);
+		Cliente cli1 = new Cliente(null, "Maria Silva", "flamacar@hotmail.com", "36378912377", TipoCliente.PESSOAFISICA, pe.encode("1234"));
 		
 		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
 		
