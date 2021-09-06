@@ -18,17 +18,19 @@ public class SmtpEmailService extends AbstractEmailService {
 	private JavaMailSender javaMailSender;
 	
 	private static final Logger LOG = LoggerFactory.getLogger(MockEmailService.class);
+	
 	@Override
 	public void sendEmail(SimpleMailMessage msg) {
 		
-		LOG.info("Enviando email...");
+		LOG.info("Simulando envio de email...");
 		mailSender.send(msg);
 		LOG.info("Email enviado");
 	}
 	
 	@Override
 	public void sendHtmlEmail(MimeMessage msg) {
-		LOG.info("Enviando email...");
+		
+		LOG.info("Simulando envio de email...");
 		javaMailSender.send(msg);
 		LOG.info("Email enviado");
 	}
