@@ -1,4 +1,4 @@
-package com.implementacao.mc.exceptions;
+package com.implementacao.mc.service.exception;
 
 public class DataIntegrityException extends RuntimeException {
 

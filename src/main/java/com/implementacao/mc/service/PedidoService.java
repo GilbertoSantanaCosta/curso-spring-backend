@@ -10,12 +10,12 @@ import com.implementacao.mc.domain.ItemPedido;
 import com.implementacao.mc.domain.PagamentoComBoleto;
 import com.implementacao.mc.domain.Pedido;
 import com.implementacao.mc.domain.enums.EstadoPagamento;
-import com.implementacao.mc.exceptions.ObjectNotFoundException;
 import com.implementacao.mc.repositories.ClienteRepository;
 import com.implementacao.mc.repositories.ItemPedidoRepository;
 import com.implementacao.mc.repositories.PagamentoRepository;
 import com.implementacao.mc.repositories.PedidoRepository;
 import com.implementacao.mc.repositories.ProdutoRepository;
+import com.implementacao.mc.service.exception.ObjectNotFoundException;
 
 
 @Service

@@ -1,4 +1,4 @@
-package com.implementacao.mc.security;
+package com.implementacao.mc.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.implementacao.mc.domain.Cliente;
 import com.implementacao.mc.repositories.ClienteRepository;
+import com.implementacao.mc.security.UserSS;
 
 
 

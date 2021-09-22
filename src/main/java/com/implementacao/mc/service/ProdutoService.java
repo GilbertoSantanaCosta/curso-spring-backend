@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import com.implementacao.mc.domain.Categoria;
 import com.implementacao.mc.domain.Cliente;
 import com.implementacao.mc.domain.Produto;
-import com.implementacao.mc.exceptions.ObjectNotFoundException;
 import com.implementacao.mc.repositories.CategoriaRepository;
 import com.implementacao.mc.repositories.ProdutoRepository;
+import com.implementacao.mc.service.exception.ObjectNotFoundException;
 
 
 @Service

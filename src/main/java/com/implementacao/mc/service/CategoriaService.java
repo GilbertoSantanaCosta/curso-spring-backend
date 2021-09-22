@@ -13,9 +13,9 @@ import com.implementacao.mc.DTO.CategoriaDTO;
 import com.implementacao.mc.domain.Categoria;
 import com.implementacao.mc.domain.Cliente;
 import com.implementacao.mc.domain.Categoria;
-import com.implementacao.mc.exceptions.DataIntegrityException;
-import com.implementacao.mc.exceptions.ObjectNotFoundException;
 import com.implementacao.mc.repositories.CategoriaRepository;
+import com.implementacao.mc.service.exception.DataIntegrityException;
+import com.implementacao.mc.service.exception.ObjectNotFoundException;
 
 
 @Service
