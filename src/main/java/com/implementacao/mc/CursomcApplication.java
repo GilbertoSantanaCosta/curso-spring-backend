@@ -31,10 +31,13 @@ import com.implementacao.mc.repositories.ItemPedidoRepository;
 import com.implementacao.mc.repositories.PagamentoRepository;
 import com.implementacao.mc.repositories.PedidoRepository;
 import com.implementacao.mc.repositories.ProdutoRepository;
+import com.implementacao.mc.service.S3Service;
 
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner {
 	
+	@Autowired
+	private S3Service s3Service;
 	
 	
 	public static void main(String[] args) {
@@ -44,7 +47,7 @@ public class CursomcApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		
+		s3Service.uploadFile("C:\\Temp\\imagem.jpg");
 				
 	
 		

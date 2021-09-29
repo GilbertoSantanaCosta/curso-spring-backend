@@ -16,11 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import com.implementacao.mc.DTO.CategoriaDTO;
-import com.implementacao.mc.DTO.ClienteNewDTO;
-import com.implementacao.mc.domain.Categoria;
-import com.implementacao.mc.domain.Cliente;
 import com.implementacao.mc.domain.Pedido;
 import com.implementacao.mc.service.PedidoService;
 

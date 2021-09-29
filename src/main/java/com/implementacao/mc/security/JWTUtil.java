@@ -3,7 +3,7 @@ package com.implementacao.mc.security;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
